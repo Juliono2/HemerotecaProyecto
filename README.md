@@ -29,21 +29,19 @@ Agrega la extension al servidor local generado segun sea la vista que desee cont
 
 para las sub vistas, o vistas especificas añada la vista que quiera consultar.
 
-** Books**
 
-** "books": "http://localhost:8000/books/books/"
-** "copy": "http://localhost:8000/books/copy/"
-** "publication": "http://localhost:8000/books/publication/"
+**Books**
+* "books": "http://localhost:8000/books/books/"
+* "copy": "http://localhost:8000/books/copy/"
+* "publication": "http://localhost:8000/books/publication/"
 
-** Users **
+**Users**
+* "authors": "http://localhost:8000/users/authors/"
+* "users": "http://localhost:8000/users/users/"
+* "suscriptions": "http://localhost:8000/users/suscriptions/"
 
-** "authors": "http://localhost:8000/users/authors/",
-** "users": "http://localhost:8000/users/users/",
-** "suscriptions": "http://localhost:8000/users/suscriptions/"
-
-** Loans **
-
-** "loans": "http://localhost:8000/loans/loans/"
+**Loans**
+* "loans": "http://localhost:8000/loans/loans/"
 
 Realizado de esta forma para evitar confusiones entre los modelos frente a las diferentes aplicaciones.
 
