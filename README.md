@@ -52,7 +52,7 @@ El proyecto realizado cuenta con la configuracion por aplicacion de:
 **Serializer**
 **Urls**
 
-Por ultimo, cuenta con la verificacion de
+Por ultimo, cuenta con la verificacion en archivo view.py de:
 
 * Crea una suscripcion, que no exista una ya activa para ese usuario.
 * Crear un prestamo, que no exista uno activo con la misma copia.
