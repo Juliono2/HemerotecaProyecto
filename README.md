@@ -5,6 +5,7 @@ Este es un proyecto académico desarrollado con Django que incluye las aplicacio
 - `books`: Una aplicación que se encarga de la gestion de informacion propia de los libros
 - `users`: Otra aplicación que se encarga de el manejo de datos en los usuarios de la hemeroteca
 - `loans`: Una tercera aplicación que se ocupa de los prestamos.
+- `locations`: Una cuarta aplicación que se encarga de la logica para el almacenamiento de libros
 
 ## Requisitos
 
@@ -30,6 +31,7 @@ Agrega la extension al servidor local generado segun sea la vista que desee cont
 * localhost:8000/books/
 * localhost:8000/users/
 * localhost:8000/loans/
+* localhost:8000/locations/
 
 para las sub vistas, o vistas especificas añada la vista que quiera consultar.
 
@@ -46,23 +48,34 @@ para las sub vistas, o vistas especificas añada la vista que quiera consultar.
 
 **Loans**
 * "loans": "http://localhost:8000/loans/loans/"
+* "lateloans": "http://localhost:8000/loans/lateloans/"
+* "debts": "http://localhost:8000/loans/debts/"
+
+**Locations**
+* "booklocations": "http://localhost:8000/locations/book-location/"
+* "sections": "http://localhost:8000/locations/section/"
+* "shelf": "http://localhost:8000/locations/shelf/"
 
 Realizado de esta forma para evitar confusiones entre los modelos frente a las diferentes aplicaciones.
 
 
 El proyecto realizado cuenta con la configuracion por aplicacion de:
 
-**ViewSet**
-**Serializer**
-**Urls**
+| Concepto | Descripción |
+| ------ | ------ |
+| **ViewSet** | Clase en Django REST framework que combina funcionalidades de vistas y enrutamiento, simplificando la creación de API CRUD. |
+| **Serializer** | Herramienta que convierte los modelos de Django en datos JSON para su uso en APIs, facilitando la representación y validación de datos. |
+| **Urls**e | Definiciones de patrones de URL que mapean las vistas de una aplicación web o API, permitiendo la navegación y acceso a recursos específicos. |
 
-Por ultimo, cuenta con la verificacion en archivo view.py de:
+Por ultimo, cuenta con la verificacion en archivos view.py segun la aplicacion de:
 
 * Crea una suscripcion, que no exista una ya activa para ese usuario.
 * Crear un prestamo, que no exista uno activo con la misma copia.
+* Generar prestamos retardados y deuda segun el update del estado del prestamo y su fecha de final del prestamo, para ello cambie el estado de un prestamo a inactivo, y si su fecha de entrega es menor a la fecha actual, se generar una deuda.
 
+Considere la siguiente ruta, el ".../loans/2" indica el segundo prestamo, cambie su dicho numero segun el prestamo al cual cambiara de activo a inactivo. 
 ```sh
-127.0.0.1:8000
+http://localhost:8000/loans/loans/2/
 ```
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.) 
@@ -72,3 +85,4 @@ Por ultimo, cuenta con la verificacion en archivo view.py de:
    [Python]: <https://www.python.org/>
    [REST Framework]: <https://www.django-rest-framework.org/>
    [Gulp]: <http://gulpjs.com>
+
