@@ -1,18 +1,23 @@
 from django.shortcuts import render
-
-from .serializers import BookSerializer, CopySerializer, PublicationSerializer
-from .models import Book, Copy, Publication
+# IMPORTACIONES DE REST
 from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
-class BookViewSet(ModelViewSet):
-    serializer_class = BookSerializer
-    queryset = Book.objects.all()
+# IMPORTACIONES DE SERIALIZERS
+from .serializers import BookSerializer, CopySerializer, PublicationSerializer
 
-class CopyViewSet(ModelViewSet):
+# IMPORTACIONES DE LOS MODULOS
+from .models import Book, Copy, Publication
+
+
+# Create your views here.
+class BookViewSet(ModelViewSet):            # VISTA DE LOS LIBROS
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()           # con esto se muestran todos los atributos
+
+class CopyViewSet(ModelViewSet):            # VISTA DE LAS COPIAS
     serializer_class = CopySerializer
     queryset = Copy.objects.all()
 
-class PublicationViewSet(ModelViewSet):
+class PublicationViewSet(ModelViewSet):     # VISTA DE LAS PUBLICACIONES
     serializer_class = PublicationSerializer
     queryset = Publication.objects.all()

@@ -25,13 +25,13 @@ SECRET_KEY = 'django-insecure-4r=6#xtlrz1^rbq!e*hfe2pgn-+dj3-l-6$1v25)4&g@=z*3f@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Ajustes de permisos para las urls, agregamos para ejecutar en local
 ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 AUTH_USER_MODEL = "users.user"
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'apps.books',
-    'apps.loans',
+    'rest_framework',   # Agregamos dentro de las apps RestFramework
+    'apps.books',       # Agregamos las aplicaciones creaadas
+    'apps.loans',       # creadas en la carpeta apps
     'apps.users',
+    'apps.locations',
 ]
 
 MIDDLEWARE = [

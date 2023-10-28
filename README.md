@@ -10,6 +10,10 @@ Este es un proyecto académico desarrollado con Django que incluye las aplicacio
 
 Asegúrate de tener Python y Django, y complementos de REST instalados en tu entorno de desarrollo.
 
+- [Django] - Framework de alto nivel en Python que fomenta un desarrollo rápido y un diseño limpio y pragmático.
+- [Python] - Lenguaje de programacion
+- [REST Framework] - Conjunto de herramientas potente y flexible para crear API web.
+
 ## Usuario de Prueba
 Para entrar a administrador puedes usar este usuario de prueba.
 
@@ -56,3 +60,15 @@ Por ultimo, cuenta con la verificacion en archivo view.py de:
 
 * Crea una suscripcion, que no exista una ya activa para ese usuario.
 * Crear un prestamo, que no exista uno activo con la misma copia.
+
+```sh
+127.0.0.1:8000
+```
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen.) 
+
+   [dill]: <https://github.com/joemccann/dillinger>
+   [Django]: <https://www.djangoproject.com/>
+   [Python]: <https://www.python.org/>
+   [REST Framework]: <https://www.django-rest-framework.org/>
+   [Gulp]: <http://gulpjs.com>
