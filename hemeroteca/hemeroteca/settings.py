@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',   # Agregamos dentro de las apps RestFramework
-    'apps.books',       # Agregamos las aplicaciones creaadas
-    'apps.loans',       # creadas en la carpeta apps
+    'drf_yasg',                 # Agregamos Swagger
+    'rest_framework',           # Agregamos dentro de las apps RestFramework
+    'rest_framework_simplejwt', # Agregamos a SimpleJWT
+    'apps.books',               # Agregamos las aplicaciones creaadas
+    'apps.loans',               # creadas en la carpeta apps
     'apps.users',
     'apps.locations',
 ]
@@ -128,3 +131,29 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Configuraciones de Simple JDT desde RestFramework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+# Configuracion de JSON Web Token para el tiempo
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1), 
+}
+
+# Configuracion de Swagger para la documentacion de endpoints
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'api_version': '1.0',
+}

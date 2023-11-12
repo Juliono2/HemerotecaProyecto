@@ -3,6 +3,9 @@ from django.shortcuts import render
 # IMPORTACIONES DE REST
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import action
+from rest_framework.generics import CreateAPIView
 from rest_framework import status
 
 # IMPORTACIONES DE SERIALIZERS
@@ -16,7 +19,9 @@ class AuthorViewSet(ModelViewSet):          # VISTA DE LOS AUTORES
     serializer_class = AuthorSerializer
     queryset = Author.objects.all()         # con esto se muestran todos los atributos
 
-class UserViewSet(ModelViewSet):            # VISTA DE LOS USUARIOS
+class CreateUserView(CreateAPIView):
+    model = User
+    permission_classes = [AllowAny]
     serializer_class = UserSerializer
     queryset = User.objects.all()
 

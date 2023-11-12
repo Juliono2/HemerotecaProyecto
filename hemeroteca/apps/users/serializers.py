@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 # IMPORTACIONES DE LOS MODELOS
-from .models import Author, Suscription
+from .models import Author, Suscription, User
 
 class AuthorSerializer(serializers.ModelSerializer):
     """
@@ -48,6 +48,18 @@ class UserSerializer(serializers.ModelSerializer):
     fields (tuple): Una tupla de campos que se incluirán en la serialización,
     que incluye 'id', 'username', 'email', 'first_name' y 'last_name'.
     """
+    password = serializers.CharField(write_only=True)
+
+    def create(self, validated_data):
+        _user = User.objects.create_user(
+            username=validated_data['email'],
+            password=validated_data['password'],
+            email = validated_data['email'],
+            rol=validated_data.get('rol', 3)
+        )
+
+        return _user
+    
     class Meta:
         model = get_user_model()
-        fields = ('id', 'username', 'email', 'first_name', 'last_name')
+        fields = ('id', 'email', 'password', 'rol')

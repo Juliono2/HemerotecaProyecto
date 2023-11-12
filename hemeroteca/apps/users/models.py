@@ -3,7 +3,15 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):                   # Se hace uso del modelo de AbstractUser
+    ROLES_HEMEROTECA = (
+        (1,'Bibliotecario'),
+        (2,'Catalogador'),
+        (3,'Lector'),
+        (4,'Administrador')
+    )
+
     REQUIRED_FIELDS = ["email"]             # Con esto hacemos que los atributos contenidos sean obligatorios
+    rol = models.IntegerField(choices=ROLES_HEMEROTECA, default=3)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
