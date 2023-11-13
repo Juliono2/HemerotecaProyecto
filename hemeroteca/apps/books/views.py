@@ -13,7 +13,6 @@ from .models import Book, Copy, Publication
 # Permisos
 class ViewPermission(BasePermission):
     def has_permission(self, request, view):
-        print('entro we')
         return request.user.is_authenticated
 
 class CreatePermission(BasePermission):
@@ -26,12 +25,12 @@ class CreatePermission(BasePermission):
 class BookViewSet(ModelViewSet):            # VISTA DE LOS LIBROS
     serializer_class = BookSerializer
     queryset = Book.objects.all()           # con esto se muestran todos los atributos
-    permission_classes = [CreatePermission | ViewPermission]  # Asignamos Permisos 
+    permission_classes = [CreatePermission, ViewPermission]  # Asignamos Permisos 
 
 class CopyViewSet(ModelViewSet):            # VISTA DE LAS COPIAS
     serializer_class = CopySerializer
     queryset = Copy.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CreatePermission, IsAuthenticated]
 
 class PublicationViewSet(ModelViewSet):     # VISTA DE LAS PUBLICACIONES
     serializer_class = PublicationSerializer

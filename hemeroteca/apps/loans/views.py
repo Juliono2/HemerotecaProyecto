@@ -22,13 +22,15 @@ class ViewPermission(BasePermission):
 
 class BibliotecarioOrAdminPermission(BasePermission):
     def has_permission(self, request, view):
-        return request.user.rol in [1, 4]   # Verifica si el usuario tiene el rol de Bibliotecario o Administrador
-
+        if view.action == "create" or view.action == "update" or view.action == "delete": 
+            return request.user.rol in [1, 4]   # Verifica si el usuario tiene el rol de Bibliotecario o Administrador
+        return True
+    
 # Create your views here.
 class LoanViewSet(ModelViewSet):                # VISTA DE LOS PRESTAMOS
     serializer_class = LoanSerializer
     queryset = Loan.objects.all()
-    permission_classes = [ViewPermission | BibliotecarioOrAdminPermission]  # Asignamos Permisos
+    permission_classes = [BibliotecarioOrAdminPermission, ViewPermission]  # Asignamos Permisos
 
     def create(self, request, *args, **kwargs):         # Modificamos el Query de Creacion
         # Obtener el serializador y validar los datos de la solicitud.
@@ -87,12 +89,12 @@ class LoanViewSet(ModelViewSet):                # VISTA DE LOS PRESTAMOS
 class LateLoanViewSet(ModelViewSet):            # VISTA DE LOS RETARDOS
     serializer_class = LateLoanSerializer
     queryset = LateLoan.objects.all()
-    permission_classes = [ViewPermission | BibliotecarioOrAdminPermission]  # Asignamos Permisos
+    permission_classes = [BibliotecarioOrAdminPermission, ViewPermission]  # Asignamos Permisos
 
 
 class DebtViewSet(ModelViewSet):            # VISTA DE LOS DEUDAS
     serializer_class = DebtSerializer
     queryset = Debt.objects.all()
-    permission_classes = [ViewPermission | BibliotecarioOrAdminPermission]  # Asignamos Permisos
+    permission_classes = [BibliotecarioOrAdminPermission, ViewPermission]  # Asignamos Permisos
 
        
