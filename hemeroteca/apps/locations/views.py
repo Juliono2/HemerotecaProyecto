@@ -16,11 +16,11 @@ class ViewPermission(BasePermission):
 
 class CatalogadorOrAdminPermission(BasePermission):
     def has_permission(self, request, view):
-        if request.method in ['POST', 'PUT', 'PATCH']:    # Permite la creación y actualización si el usuario es Administrador
+        if request.method in ['POST']:                   # Permite la creación si el usuario es Administrador
             return request.user.rol == 4
-        elif request.method in ['PUT', 'PATCH']:          # Permite la actualización solo si el usuario es Catalogador
-            return request.user.rol == 2
-        return True                                                                 # Deniega el resto de los métodos
+        elif request.method in ['PUT', 'PATCH']:         # Permite la actualización solo si el usuario es Catalogador o admin
+            return request.user.rol in  [2,4]
+        return True                                      # Deniega el resto de los métodos
 
 # Create your views here.
 class BookLocationViewSet(ModelViewSet):            # VISTA DE LAS UBICACIONES
